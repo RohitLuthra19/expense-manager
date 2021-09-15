@@ -1,0 +1,29 @@
+.button {
+  width: 100%;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.primary {
+  border: 2px solid var(--light-green);
+  background-color: var(--light-green); /* Green */
+  color: var(--white);
+}
+
+.secondary {
+  border: 2px solid var(--light-green);
+  background-color: var(--white); /* Green */
+  color: var(--light-green);
+}
+
+.primary:hover {
+  background-color: var(--dark-green);
+  border: 2px solid var(--dark-green);
+}
+
+.secondary:hover {
+  background-color: var(--light-green);
+  color: var(--white);
+}
