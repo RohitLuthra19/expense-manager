@@ -2,11 +2,11 @@ import Input from "components/atoms/input";
 import Button from "components/atoms/button";
 import "./style.css";
 
-function ExpenseForm() {
+function ExpenseForm({ onSave, onCancel }) {
   return (
     <div className="expense-form">
       <Input
-        type="date"
+        type="text"
         name="date"
         placeholder="Date"
         onChange={(e) => console.log(e.target.value)}
@@ -30,10 +30,10 @@ function ExpenseForm() {
         onChange={(e) => console.log(e.target.value)}
       />
 
-      <Button type="primary" onClick={() => console.log("add")}>
+      <Button type="primary" onClick={onSave}>
         Save
       </Button>
-      <Button type="secondary" onClick={() => console.log("add")}>
+      <Button type="secondary" onClick={onCancel}>
         Cancel
       </Button>
     </div>

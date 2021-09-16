@@ -1,0 +1,28 @@
+.row {
+  font-size: 12px;
+  text-transform: capitalize;
+  list-style: none;
+  display: flex;
+  border-top: 1px solid #000;
+}
+
+.row:last-child {
+  border-bottom: 1px solid #000;
+}
+
+.row-item {
+  padding: 10px;
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-left: 1px solid #000;
+}
+
+.row-item:last-child {
+  border-right: 1px solid #000;
+}
+
+.heading {
+  font-weight: 600;
+}

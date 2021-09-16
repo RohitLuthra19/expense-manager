@@ -4,8 +4,11 @@
 
 .card {
   width: 100%;
-  padding: 14px 20px;
+  padding: 30px 20px;
   margin: 8px 0;
+  text-align: center;
+  font-weight: 600;
+  font-size: large;
 }
 
 .label {
