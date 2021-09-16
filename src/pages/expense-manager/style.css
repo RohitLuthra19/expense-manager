@@ -2,3 +2,10 @@
   width: 40%;
   margin: 50px auto;
 }
+
+@media screen and (max-width: 600px) {
+  .expense-manager {
+    margin: 15px auto;
+    width: 90%;
+  }
+}
