@@ -30,7 +30,7 @@ function ExpenseForm({ onSave, onCancel }) {
   return (
     <div className="expense-form">
       <Input
-        type="text"
+        type="date"
         name="date"
         placeholder="Date"
         value={data?.date}
