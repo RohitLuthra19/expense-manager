@@ -1,36 +1,64 @@
+import { useState, useContext } from "react";
+
 import Input from "components/atoms/input";
 import Button from "components/atoms/button";
+import { Context } from "context";
 import "./style.css";
 
 function ExpenseForm({ onSave, onCancel }) {
+  const [data, setData] = useState({
+    date: "",
+    description: "",
+    category: "",
+    amount: 0,
+  });
+  const { addExpense } = useContext(Context);
+
+  const onChange = (e) => {
+    const { name, value } = e.target;
+    setData((prevState) => ({
+      ...prevState,
+      [name]: value,
+    }));
+  };
+
+  const handleSave = () => {
+    addExpense(data);
+    onSave();
+  };
+
   return (
     <div className="expense-form">
       <Input
         type="text"
         name="date"
         placeholder="Date"
-        onChange={(e) => console.log(e.target.value)}
+        value={data?.date}
+        onChange={onChange}
       />
       <Input
         type="text"
         name="category"
         placeholder="Category"
-        onChange={(e) => console.log(e.target.value)}
+        value={data?.category}
+        onChange={onChange}
       />
       <Input
         type="text"
         name="description"
         placeholder="Description"
-        onChange={(e) => console.log(e.target.value)}
+        value={data?.description}
+        onChange={onChange}
       />
       <Input
         type="number"
         name="amount"
         placeholder="Amount"
-        onChange={(e) => console.log(e.target.value)}
+        value={data?.amount}
+        onChange={onChange}
       />
 
-      <Button type="primary" onClick={onSave}>
+      <Button type="primary" onClick={handleSave}>
         Save
       </Button>
       <Button type="secondary" onClick={onCancel}>

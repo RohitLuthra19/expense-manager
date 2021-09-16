@@ -1,27 +1,22 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import Button from "components/atoms/button";
 import ExpenseViewer from "components/atoms/expense-viewer";
 import ExpenseForm from "components/templates/expense-form";
 import Row from "components/atoms/row";
+import { Context } from "context";
 import "./style.css";
 
 function ExpenseManager() {
   const [state, setState] = useState(false);
+  const { expenses } = useContext(Context);
 
-  const data = [
-    {
-      date: "12-09-2021",
-      description: "bla bla bla",
-      category: "A",
-      amount: "199",
-    },
-    {
-      date: "12-08-2021",
-      description: "foo foo foo",
-      category: "B",
-      amount: "179",
-    },
-  ];
+  const onSave = () => {
+    setState(!state);
+  };
+
+  const onCancel = () => {
+    setState(!state);
+  };
 
   return (
     <div className="expense-manager">
@@ -31,16 +26,14 @@ function ExpenseManager() {
       </Button>
 
       {state ? (
-        <ExpenseForm
-          onSave={() => setState(!state)}
-          onCancel={() => setState(!state)}
-        />
+        <ExpenseForm onSave={onSave} onCancel={onCancel} />
       ) : (
         <div>
           <Row items={["Date", "Desc", "Cat", "Amt$"]} heading={true} />
-          {data?.map((item, i) => {
+          {expenses?.map((item, i) => {
             return (
               <Row
+                key={`item-${i}`}
                 items={[
                   item?.date,
                   item?.description,
