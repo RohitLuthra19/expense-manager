@@ -12,23 +12,31 @@ function ExpenseForm({ onSave, onCancel }) {
     category: "",
     amount: 0,
   });
+  const [error, setError] = useState(false);
   const { addExpense } = useContext(Context);
 
   const onChange = (e) => {
     const { name, value } = e.target;
+    setError(false);
     setData((prevState) => ({
       ...prevState,
       [name]: value,
     }));
   };
 
-  const handleSave = () => {
-    addExpense(data);
-    onSave();
+  const handleSave = (e) => {
+    e.preventDefault();
+    //Assumption date and amount is required
+    if (data?.date !== "" && data?.amount !== 0) {
+      addExpense(data);
+      onSave();
+    } else {
+      setError(!error);
+    }
   };
 
   return (
-    <div className="expense-form">
+    <form className="expense-form">
       <Input
         type="date"
         name="date"
@@ -64,7 +72,11 @@ function ExpenseForm({ onSave, onCancel }) {
       <Button type="secondary" onClick={onCancel}>
         Cancel
       </Button>
-    </div>
+
+      {error && (
+        <span className="error-msg">(Date and Amount are required fields)</span>
+      )}
+    </form>
   );
 }
 

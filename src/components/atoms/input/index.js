@@ -1,6 +1,15 @@
 import "./style.css";
 
-function Input({ onChange, type, id, name, placeholder, value, label }) {
+function Input({
+  onChange,
+  type,
+  id,
+  name,
+  placeholder,
+  value,
+  label,
+  required,
+}) {
   return (
     <div>
       {label && <label htmlFor={id}>{label}</label>}
@@ -12,6 +21,7 @@ function Input({ onChange, type, id, name, placeholder, value, label }) {
         name={name}
         placeholder={placeholder}
         value={value}
+        required={required}
       />
     </div>
   );
