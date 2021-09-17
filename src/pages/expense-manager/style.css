@@ -1,6 +1,15 @@
 .expense-manager {
-  width: 40%;
+  width: 50%;
   margin: 50px auto;
+}
+
+.btn {
+  border: none;
+  background: transparent;
+  padding: 10px 20px;
+  cursor: pointer;
+  font-size: 20px;
+  font-weight: 600;
 }
 
 @media screen and (max-width: 600px) {

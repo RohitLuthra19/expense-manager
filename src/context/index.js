@@ -33,8 +33,21 @@ export default function Provider({ children }) {
         setExpenses((prevState) => [...prevState, data?.expenses]);
       });
   };
+
+  const deleteExpense = async (id) => {
+    await fetch(`${URL}/${id}`, {
+      method: "delete",
+      headers: { "Content-Type": "application/json" },
+    })
+      .then((data) => {
+        const remainingItems = expenses.filter((item) => item.id !== id);
+        setExpenses(remainingItems);
+      })
+      .catch((error) => console.log("error:", error));
+  };
+
   return (
-    <Context.Provider value={{ loading, expenses, addExpense }}>
+    <Context.Provider value={{ loading, expenses, addExpense, deleteExpense }}>
       {children}
     </Context.Provider>
   );

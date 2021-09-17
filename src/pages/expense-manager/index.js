@@ -10,7 +10,7 @@ import "./style.css";
 function ExpenseManager() {
   const [state, setState] = useState(false);
 
-  const { loading, expenses } = useContext(Context);
+  const { loading, expenses, deleteExpense } = useContext(Context);
 
   const onSave = () => {
     setState(!state);
@@ -41,18 +41,21 @@ function ExpenseManager() {
           <ExpenseForm onSave={onSave} onCancel={onCancel} />
         ) : (
           <div>
-            <Row items={["Date", "Desc", "Cat", "Amt$"]} heading={true} />
+            <Row items={["Date", "Desc", "Cat", "Amt$", ""]} heading={true} />
             {expenses?.map((item, i) => {
+              const { date, description, category, amount, id } = item;
               return (
-                <Row
-                  key={`item-${i}`}
-                  items={[
-                    item?.date,
-                    item?.description,
-                    item?.category,
-                    item?.amount,
-                  ]}
-                />
+                <ul className="row" key={`item-${i}`}>
+                  <li className="row-item">{date}</li>
+                  <li className="row-item">{description}</li>
+                  <li className="row-item">{category}</li>
+                  <li className="row-item">{amount}</li>
+                  <li className="row-item">
+                    <button className="btn" onClick={() => deleteExpense(id)}>
+                      x
+                    </button>
+                  </li>
+                </ul>
               );
             })}
           </div>

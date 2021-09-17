@@ -4,6 +4,9 @@ import { Model, createServer } from "miragejs";
 export default function ({ environment = "development" } = {}) {
   return createServer({
     environment,
+    /* serializers: {
+      expenses: RestSerializer,
+    }, */
     models: {
       expenses: Model,
     },
@@ -42,7 +45,9 @@ export default function ({ environment = "development" } = {}) {
       });
       this.delete("/:id", (schema, request) => {
         let id = request.params.id;
-        return schema.expenses.find(id).destroy();
+        let expense = schema.expenses.find(id);
+        expense.destroy();
+        return "deleted successfully";
       });
     },
   });
