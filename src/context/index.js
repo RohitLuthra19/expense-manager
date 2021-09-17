@@ -30,7 +30,6 @@ export default function Provider({ children }) {
     })
       .then((response) => response.json())
       .then((data) => {
-        console.log(data.expenses);
         setExpenses((prevState) => [...prevState, data?.expenses]);
       });
   };

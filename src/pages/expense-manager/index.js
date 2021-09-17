@@ -21,12 +21,17 @@ function ExpenseManager() {
   };
 
   const render = () => {
-    let filteredData = filterByMonth(expenses, "09");
-    let sum = sumOfValue(filteredData, "amount");
+    const currentDate = new Date();
+    const currentMonth = String(currentDate.getMonth() + 1).padStart(2, "0"); // eg. currentMonth=09 for september
+    const currentMonthStr = currentDate.toLocaleString("en-us", {
+      month: "short",
+    }); // eg. currentMonthStr=sept
+    const filteredData = filterByMonth(expenses, currentMonth);
+    const currentMonthTotal = sumOfValue(filteredData, "amount");
 
     return (
       <div className="expense-manager">
-        <ExpenseViewer label="Sept" value={sum} />
+        <ExpenseViewer label={currentMonthStr} value={currentMonthTotal} />
         <Button type="primary" onClick={() => setState(!state)}>
           Add +
         </Button>
