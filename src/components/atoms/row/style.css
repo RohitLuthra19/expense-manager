@@ -25,3 +25,15 @@
 .heading {
   font-weight: 600;
 }
+
+@media screen and (max-width: 400px) {
+  .row,
+  .row:last-child,
+  .row-item,
+  .row-item:last-child {
+    padding: 0;
+    min-width: 40px;
+    /* border: none; */
+    font-size: 10px;
+  }
+}
