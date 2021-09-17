@@ -4,6 +4,11 @@ import "./global.css";
 import "./normalize.css";
 import ExpenseManager from "./pages/expense-manager";
 import ContextProvider from "./context";
+import makeServer from "./lib/server";
+
+if (process.env.NODE_ENV === "development") {
+  makeServer({ environment: "development" });
+}
 
 ReactDOM.render(
   <React.StrictMode>
