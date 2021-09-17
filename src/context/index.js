@@ -22,8 +22,17 @@ export default function Provider({ children }) {
     getExpenseList();
   }, []);
 
-  const addExpense = (item) => {
-    setExpenses((prevState) => [...prevState, item]);
+  const addExpense = async (item) => {
+    await fetch(URL, {
+      method: "post",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(item),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data.expenses);
+        setExpenses((prevState) => [...prevState, data?.expenses]);
+      });
   };
   return (
     <Context.Provider value={{ loading, expenses, addExpense }}>
