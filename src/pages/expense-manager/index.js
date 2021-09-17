@@ -22,11 +22,12 @@ function ExpenseManager() {
 
   const render = () => {
     const currentDate = new Date();
+    const currentYear = String(currentDate.getFullYear());
     const currentMonth = String(currentDate.getMonth() + 1).padStart(2, "0"); // eg. currentMonth=09 for september
     const currentMonthStr = currentDate.toLocaleString("en-us", {
       month: "short",
     }); // eg. currentMonthStr=sept
-    const filteredData = filterByMonth(expenses, currentMonth);
+    const filteredData = filterByMonth(expenses, currentMonth, currentYear);
     const currentMonthTotal = sumOfValue(filteredData, "amount");
 
     return (

@@ -1,8 +1,8 @@
-const filterByMonth = (data, month) => {
+const filterByMonth = (data, month = "09", year = "2021") => {
   return data?.filter((item) => {
     // eslint-disable-next-line
     let [yearPart, monthPart] = item.date.split("-");
-    return monthPart === month; // '09'
+    return monthPart === month && yearPart === year; // '09'
   });
 };
 
